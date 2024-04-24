@@ -120,43 +120,4 @@ const readPanigation = async (rawData) => {
   }
 };
 
-// const read = async (rawData) => {
-//   try {
-//     const existCus = await existReader(rawData.phone);
-//     if (!existCus) {
-//       return {
-//         EM: "Người dùng không tồn tại !!! ",
-//         EC: -2,
-//         DT: [],
-//       };
-//     }
-
-//     const data = await db.Reader.findOneAndUpdate(
-//       { SoDienThoai: rawData.phone },
-//       {
-//         HoTen: rawData.HoTen,
-//         SoDienThoai: rawData.SoDienThoai,
-//         DiaChi: rawData.DiaChi,
-//       },
-//       { new: true }
-//     );
-
-//     if (data) {
-//       return {
-//         EM: "Update sản phẩm thành công ",
-//         EC: 0,
-//         DT: data,
-//       };
-//     }
-
-//   } catch (error) {
-//     console.log(">>> error", error);
-//     return {
-//       EM: " Lỗi server",
-//       EC: -5,
-//       DT: [],
-//     };
-//   }
-// };
-
 export default { update, readPanigation };

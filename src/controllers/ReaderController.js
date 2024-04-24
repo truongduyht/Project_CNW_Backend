@@ -3,8 +3,8 @@ import ReaderService from "../services/ReaderService";
 class ReaderController {
   // [POST] /api/reader/update
   async update(req, res) {
-    const { IdUser, HoTen, SoDienThoai, DiaChi } = req.body;
-    if (!IdUser || !HoTen || !SoDienThoai || !DiaChi) {
+    const { HoTen, SoDienThoai, DiaChi } = req.body;
+    if (!HoTen || !SoDienThoai || !DiaChi) {
       return res.json({
         EM: "Nhập thiếu trường dữ liệu !!! ",
         EC: -2,

@@ -53,10 +53,9 @@ class BookController {
 
   // [PUT] /api/book/update
   update = async (req, res) => {
-    const { id, TenSach, DonGia, SoQuyen, TheLoai, NamXB, TacGia, TenNXB } =
+    console.log(req.body);
+    const { id, TenSach, DonGia, SoQuyen, TheLoai, NamXB, TacGia, MaNXB } =
       req.body;
-
-    const AnhSach = req?.file?.path || req.body.AnhSach;
 
     if (
       !id ||
@@ -66,7 +65,7 @@ class BookController {
       !TheLoai ||
       !NamXB ||
       !TacGia ||
-      !TenNXB
+      !MaNXB
     ) {
       return res.json({
         EM: "Nhập thiếu trường dữ liệu !!! ",
@@ -76,7 +75,7 @@ class BookController {
     }
 
     try {
-      const data = await BookService.update(req.body, AnhSach);
+      const data = await BookService.update(req.body);
       return res.json({
         EM: data.EM,
         EC: data.EC,
@@ -90,7 +89,6 @@ class BookController {
   // [DELETE] /api/book/delete
   delete = async (req, res) => {
     const id = req.body;
-    console.log("-------------", req.body);
     if (!id) {
       return res.json({
         EM: "Nhập thiếu trường dữ liệu !!! ",
@@ -105,14 +103,13 @@ class BookController {
         EC: data.EC,
         DT: data.DT,
       });
-    } catch (error) {
-      console.log(">>> error", error);
-    }
+    } catch (error) {}
   };
 
   // [POST] /api/book/create
   create = async (req, res) => {
-    const { TenSach, DonGia, SoQuyen, TheLoai, NamXB, TacGia, TenNXB } =
+    console.log(req.body);
+    const { TenSach, DonGia, SoQuyen, TheLoai, NamXB, TacGia, MaNXB } =
       req.body;
 
     const dataBody = {
@@ -122,7 +119,7 @@ class BookController {
       TheLoai: TheLoai,
       NamXB: NamXB,
       TacGia: TacGia,
-      TenNXB: TenNXB,
+      MaNXB: MaNXB,
     };
 
     const AnhSach = req?.file?.path;
@@ -142,7 +139,7 @@ class BookController {
       !TheLoai ||
       !NamXB ||
       !TacGia ||
-      !TenNXB
+      !MaNXB
     ) {
       return res.json({
         EM: "Nhập thiếu trường dữ liệu !!! ",

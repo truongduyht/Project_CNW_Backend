@@ -9,7 +9,7 @@ const BookSchema = new Schema(
     NamXB: String,
     TacGia: String,
     TheLoai: String,
-    MaNXB: { type: Schema.Types.ObjectId, red: "Publish" },
+    MaNXB: { type: Schema.Types.ObjectId, ref: "Publish" },
     AnhSach: String,
   },
   {

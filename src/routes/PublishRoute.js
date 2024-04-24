@@ -7,5 +7,6 @@ router.put("/update", PublishController.update);
 router.delete("/delete", PublishController.delete);
 router.get("/read", PublishController.read);
 router.get("/readPanigation", PublishController.readPanigate);
+router.get("/getallpublish", PublishController.getAllPublish);
 
 export default router;

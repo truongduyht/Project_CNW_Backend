@@ -20,6 +20,11 @@ const existPublishById = async (id) => {
   }
 };
 
+const getAllPublish = async () => {
+  const publishs = await db.Publish.find();
+  return publishs;
+};
+
 const getPublishById = async (id) => {
   const publish = await db.Publish.findOne({
     _id: id,
@@ -62,7 +67,7 @@ const create = async (rawData) => {
 
 const update = async (rawData) => {
   try {
-    const existPublish = await existPublishById(rawData?._id);
+    const existPublish = await existPublishById(rawData?.id);
     if (!existPublish) {
       return {
         EM: "NXB không tồn tại !!! ",
@@ -72,7 +77,7 @@ const update = async (rawData) => {
     }
 
     const data = await db.Publish.findByIdAndUpdate(
-      rawData._id,
+      rawData.id,
       {
         TenNXB: rawData.TenNXB,
         DiaChi: rawData.DiaChi,
@@ -182,7 +187,7 @@ const read = async (rawData) => {
 
 const deleted = async (rawData) => {
   try {
-    const exitsPublish = await existPublishById(rawData._id);
+    const exitsPublish = await existPublishById(rawData.id);
     if (!exitsPublish) {
       return {
         EM: "Không tồn tại sản phẩm !!!",
@@ -192,7 +197,7 @@ const deleted = async (rawData) => {
     }
 
     const deleted = await db.Publish.findByIdAndDelete({
-      _id: rawData?._id,
+      _id: rawData?.id,
     });
 
     if (deleted) {
@@ -212,4 +217,11 @@ const deleted = async (rawData) => {
   }
 };
 
-export default { create, update, deleted, read, getPublishWithPagination };
+export default {
+  getAllPublish,
+  create,
+  update,
+  deleted,
+  read,
+  getPublishWithPagination,
+};

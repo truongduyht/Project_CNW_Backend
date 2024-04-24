@@ -127,59 +127,6 @@ const create = async (rawData) => {
   }
 };
 
-// const read = async (rawData) => {
-//   const { IdUser, type, sort } = rawData;
-//   console.log(IdUser);
-//   const sorter = {};
-//   if (sort?.startsWith("-")) {
-//     sorter[sort.substring(1)] = -1;
-//   } else {
-//     sorter[sort] = 1;
-//   }
-
-//   try {
-//     const UserOrder = await db.Order.find({
-//       IdUser: IdUser,
-//       Status: type,
-//     })
-//       .sort(sorter)
-//       .lean();
-
-//     const orderIds = UserOrder.map((order) => order.id);
-//     const orderDetails = await db.OrderDetail.find({
-//       IdOrder: { $in: orderIds },
-//     })
-//       .populate("IdUser")
-//       .lean();
-
-//     const orderDetailMap = {};
-//     orderDetails.forEach((detail) => {
-//       if (!orderDetailMap[detail.IdOrder]) {
-//         orderDetailMap[detail.IdOrder] = [];
-//       }
-//       orderDetailMap[detail.IdOrder].push(detail);
-//     });
-
-//     const data = UserOrder.map((order) => ({
-//       ...order,
-//       OrderDetail: orderDetailMap[order.id] || [],
-//     }));
-
-//     return {
-//       EM: "Lấy dữ liệu thành công",
-//       EC: 0,
-//       DT: data,
-//     };
-//   } catch (error) {
-//     console.log(">>> error", error);
-//     return {
-//       EM: "Lỗi server",
-//       EC: -5,
-//       DT: [],
-//     };
-//   }
-// };
-
 const read = async (rawData) => {
   const { IdUser, type, sort } = rawData;
 
@@ -199,7 +146,7 @@ const read = async (rawData) => {
       .lean();
 
     const result = UserOrder.map(async (item) => {
-      let detail = await db.OrderDetail.find({ IdOrder: item.id })
+      let detail = await db.OrderDetail.find({ IdOrder: item._id })
         .populate("IdBook")
         .lean();
 
@@ -247,7 +194,7 @@ const readPagination = async (rawData) => {
       .lean();
 
     const result = order.map(async (item) => {
-      let detail = await db.OrderDetail.find({ IdOrder: item.id })
+      let detail = await db.OrderDetail.find({ IdOrder: item._id })
 
         .populate("IdBook")
         .lean();
@@ -407,30 +354,30 @@ const revenueProduct = async () => {
   }
 };
 
-const dashboardAll = async (rawData) => {
-  try {
-    const user = await db.Reader.countDocuments({});
-    const book = await db.Book.countDocuments({});
-    const order = await db.Order.countDocuments({});
-    const data = {
-      user,
-      book,
-      order,
-    };
-    return {
-      EM: "Lấy dữ liệu thành công",
-      EC: 0,
-      DT: data,
-    };
-  } catch (error) {
-    console.log(">>> error", error);
-    return {
-      EM: " Lỗi server",
-      EC: -5,
-      DT: [],
-    };
-  }
-};
+// const dashboardAll = async (rawData) => {
+//   try {
+//     const user = await db.Reader.countDocuments({});
+//     const book = await db.Book.countDocuments({});
+//     const order = await db.Order.countDocuments({});
+//     const data = {
+//       user,
+//       book,
+//       order,
+//     };
+//     return {
+//       EM: "Lấy dữ liệu thành công",
+//       EC: 0,
+//       DT: data,
+//     };
+//   } catch (error) {
+//     console.log(">>> error", error);
+//     return {
+//       EM: " Lỗi server",
+//       EC: -5,
+//       DT: [],
+//     };
+//   }
+// };
 
 export default {
   create,
@@ -438,6 +385,5 @@ export default {
   update,
   deleted,
   revenueProduct,
-  dashboardAll,
   readPagination,
 };

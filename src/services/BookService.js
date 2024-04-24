@@ -46,7 +46,7 @@ const create = async (rawData, AnhSach) => {
       NamXB: rawData.NamXB,
       TacGia: rawData.TacGia,
       TheLoai: rawData.TheLoai,
-      TenNXB: rawData.TenNXB,
+      MaNXB: rawData.MaNXB,
       AnhSach: AnhSach,
     });
 
@@ -67,7 +67,8 @@ const create = async (rawData, AnhSach) => {
   }
 };
 
-const update = async (rawData, AnhSach) => {
+const update = async (rawData) => {
+  console.log("-------------------134123425", rawData);
   try {
     const existProdut = await existBookById(rawData?.id);
     if (!existProdut) {
@@ -87,8 +88,7 @@ const update = async (rawData, AnhSach) => {
         NamXB: rawData.NamXB,
         TacGia: rawData.TacGia,
         TheLoai: rawData.TheLoai,
-        TenNXB: rawData.TenNXB,
-        AnhSach: AnhSach,
+        MaNXB: rawData.MaNXB._id,
       },
       { new: true }
     );
@@ -112,7 +112,6 @@ const update = async (rawData, AnhSach) => {
 
 const getBookWithPagination = async (rawData) => {
   const { page, limit, sort, type, author } = rawData;
-
   try {
     if (!page && !limit && !sort && !type && !author) {
       const data = await db.Book.find({});
@@ -142,15 +141,15 @@ const getBookWithPagination = async (rawData) => {
       filter.TheLoai = type;
     }
 
-    console.log("Kiem tra >>>>>>>>>>>", offset, limit);
-
     const pagination = await db.Book.find(filter)
       .skip(offset)
       .limit(limit)
       .sort(sorter)
+      .populate("MaNXB")
       .exec();
 
     const totalRecords = await db.Book.countDocuments(filter);
+    console.log("-------------------", pagination);
     const meta = {
       current: page,
       pageSize: limit,

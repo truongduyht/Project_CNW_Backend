@@ -1,5 +1,15 @@
 import PublishService from "../services/PublishService";
 class PublishController {
+  //[GET] /api/publish/getallpublish
+  getAllPublish = async (req, res) => {
+    const publishs = await PublishService.getAllPublish();
+    return res.json({
+      EM: "Lấy tất cả nhà xuất bản thành công",
+      EC: 1,
+      DT: publishs,
+    });
+  };
+
   // [POST] /api/publish/create
   create = async (req, res) => {
     const { TenNXB, DiaChi } = req.body;
@@ -29,9 +39,9 @@ class PublishController {
 
   // [PUT] /api/publish/update
   update = async (req, res) => {
-    const { TenNXB, DiaChi } = req.body;
-
-    if (!TenNXB || !DiaChi) {
+    const { id, TenNXB, DiaChi } = req.body;
+    console.log("------------", req.body);
+    if (!id || !TenNXB || !DiaChi) {
       return res.json({
         EM: "Nhập thiếu trường dữ liệu !!! ",
         EC: -2,
@@ -53,10 +63,10 @@ class PublishController {
 
   // [DELETE] /api/publish/delete
   delete = async (req, res) => {
-    const { TenNXB } = req.body;
-    if (!TenNXB) {
+    const { id } = req.body;
+    if (!id) {
       return res.json({
-        EM: "Không tìm thấy tên NXB!!! ",
+        EM: "Không tìm thấy nhà xuất bản!!! ",
         EC: -2,
         DT: [],
       });

@@ -129,7 +129,7 @@ const readPanigation = async (rawData) => {
 
   try {
     if (!page && !limit && !sort) {
-      const data = await db.Staff.find({});
+      const data = await db.Staff.find({ Role: { $ne: "admin" } }); // Lọc những người dùng có vai trò khác admin
       console.log("------------", data);
       return {
         EM: "Lấy dữ liệu thành công",
@@ -140,7 +140,7 @@ const readPanigation = async (rawData) => {
 
     let offset = (page - 1) * limit;
 
-    const filter = {};
+    const filter = { Role: { $ne: "admin" } }; // Lọc những người dùng có vai trò khác admin
     const sorter = {};
 
     if (sort?.startsWith("-")) {
