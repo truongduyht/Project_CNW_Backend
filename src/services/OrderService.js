@@ -59,8 +59,6 @@ const create = async (rawData) => {
       };
     }
 
-    //====================================================================================================
-
     // Cập nhật thông tin người dùng
 
     const updateReader = await db.Reader.findOneAndUpdate(
