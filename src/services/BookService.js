@@ -149,7 +149,6 @@ const getBookWithPagination = async (rawData) => {
       .exec();
 
     const totalRecords = await db.Book.countDocuments(filter);
-    console.log("-------------------", pagination);
     const meta = {
       current: page,
       pageSize: limit,

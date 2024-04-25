@@ -354,31 +354,6 @@ const revenueProduct = async () => {
   }
 };
 
-// const dashboardAll = async (rawData) => {
-//   try {
-//     const user = await db.Reader.countDocuments({});
-//     const book = await db.Book.countDocuments({});
-//     const order = await db.Order.countDocuments({});
-//     const data = {
-//       user,
-//       book,
-//       order,
-//     };
-//     return {
-//       EM: "Lấy dữ liệu thành công",
-//       EC: 0,
-//       DT: data,
-//     };
-//   } catch (error) {
-//     console.log(">>> error", error);
-//     return {
-//       EM: " Lỗi server",
-//       EC: -5,
-//       DT: [],
-//     };
-//   }
-// };
-
 export default {
   create,
   read,
