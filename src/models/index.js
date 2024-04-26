@@ -1,9 +1,9 @@
-import Staff from "./StaffModel";
-import Reader from "./ReaderModel";
-import Publish from "./PublishModel";
-import Book from "./BookModel";
-import Cart from "./CartModel";
-import Order from "./OderModel";
-import OrderDetail from "./OderDetailModel";
+import Staff from "./NhanVienModel";
+import Reader from "./DocGiaModel";
+import Publish from "./NXBModel";
+import Book from "./SachModel";
+import Cart from "./GioSachModel";
+import Order from "./DocGiaModel";
+import OrderDetail from "./TheoDoiDonSachModel";
 
 export default { Staff, Reader, Publish, Book, Cart, Order, OrderDetail };
