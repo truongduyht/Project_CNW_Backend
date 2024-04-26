@@ -9,7 +9,7 @@ const BookSchema = new Schema(
     NamXB: String,
     TacGia: String,
     TheLoai: String,
-    MaNXB: { type: Schema.Types.ObjectId, ref: "Publish" },
+    MaNXB: { type: Schema.Types.ObjectId, ref: "NXB" },
     AnhSach: String,
   },
   {
@@ -17,5 +17,5 @@ const BookSchema = new Schema(
   }
 );
 
-const Book = mongoose.model("Book", BookSchema);
+const Book = mongoose.model("Sach", BookSchema);
 export default Book;

@@ -11,5 +11,5 @@ const PublishSchema = new Schema(
   }
 );
 
-const Publish = mongoose.model("Publish", PublishSchema);
+const Publish = mongoose.model("NXB", PublishSchema);
 export default Publish;

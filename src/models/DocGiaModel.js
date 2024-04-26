@@ -14,5 +14,5 @@ const ReaderSchema = new Schema(
   }
 );
 
-const Reader = mongoose.model("Reader", ReaderSchema);
+const Reader = mongoose.model("DocGia", ReaderSchema);
 export default Reader;

@@ -14,5 +14,5 @@ const StaffSchema = new Schema(
   }
 );
 
-const Staff = mongoose.model("Staff", StaffSchema);
+const Staff = mongoose.model("NhanVien", StaffSchema);
 export default Staff;
