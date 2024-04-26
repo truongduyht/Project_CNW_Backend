@@ -88,7 +88,6 @@ const update = async (rawData) => {
         NamXB: rawData.NamXB,
         TacGia: rawData.TacGia,
         TheLoai: rawData.TheLoai,
-        MaNXB: rawData.MaNXB._id,
       },
       { new: true }
     );

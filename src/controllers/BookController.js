@@ -54,8 +54,7 @@ class BookController {
   // [PUT] /api/book/update
   update = async (req, res) => {
     console.log(req.body);
-    const { id, TenSach, DonGia, SoQuyen, TheLoai, NamXB, TacGia, MaNXB } =
-      req.body;
+    const { id, TenSach, DonGia, SoQuyen, TheLoai, NamXB, TacGia } = req.body;
 
     if (
       !id ||
@@ -64,8 +63,7 @@ class BookController {
       !SoQuyen ||
       !TheLoai ||
       !NamXB ||
-      !TacGia ||
-      !MaNXB
+      !TacGia
     ) {
       return res.json({
         EM: "Nhập thiếu trường dữ liệu !!! ",
