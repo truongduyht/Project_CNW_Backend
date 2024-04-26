@@ -12,7 +12,7 @@ const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   allowedFormats: ["jpg", "png"],
   params: {
-    folder: "NLCNTT",
+    folder: "Web",
   },
 });
 
